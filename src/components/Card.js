@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from "react";
+import { useDrag } from "react-dnd";
 
-class Card extends Component {
-  render() {
-    return (
-      <li>{this.props.title}</li>
-    )
-  }
+export default function Card(props) {
+  const [, drag] = useDrag({
+    item: { type: "CARD" },
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging()
+    })
+  });
+  return <li ref={drag}>{props.title}</li>;
 }
-
-export default Card

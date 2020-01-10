@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BoardContainer from '../containers/BoardContainer';
+import BoardContainer from "../containers/BoardContainer";
 
 class BoardCreator extends Component {
   state = {
@@ -7,14 +7,6 @@ class BoardCreator extends Component {
   };
 
   render() {
-    let list;
-    if (this.props.board.boardList) {
-      list = Object.keys(this.props.board.boardList).map((key, index) => (
-        <BoardContainer key={index} title={this.props.board.boardList[key].title} id={key}></BoardContainer>
-      ));
-    } else {
-      list = null
-    }
     return (
       <div>
         <input
@@ -24,7 +16,15 @@ class BoardCreator extends Component {
         <button onClick={() => this.props.createBoard(this.state.title)}>
           追加
         </button>
-        {list}
+        {this.props.board.boardList
+          ? Object.keys(this.props.board.boardList).map((key, index) => (
+              <BoardContainer
+                key={index}
+                title={this.props.board.boardList[key].title}
+                id={key}
+              ></BoardContainer>
+            ))
+          : null}
       </div>
     );
   }
