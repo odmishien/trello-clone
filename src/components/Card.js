@@ -8,5 +8,5 @@ export default function Card(props) {
       isDragging: !!monitor.isDragging()
     })
   });
-  return <li ref={drag}>{props.title}</li>;
+  return <li ref={drag}>{props.id}: {props.title}</li>;
 }
